@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNhanvien.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLNhanvienStoreContainer">
+    <EntitySet Name="Nhanvien" EntityType="QLNhanvien.Store.Nhanvien" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Phongban" EntityType="QLNhanvien.Store.Phongban" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_nhanvien_phongban" Association="QLNhanvien.Store.fk_nhanvien_phongban">
+      <End Role="Nhanvien" EntitySet="Nhanvien" />
+      <End Role="Phongban" EntitySet="Phongban" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Nhanvien">
+    <Key>
+      <PropertyRef Name="manhanvien" />
+    </Key>
+    <Property Name="manhanvien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tennhanvien" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ngaysinh" Type="datetime" Nullable="false" />
+    <Property Name="luong" Type="decimal" Nullable="false" />
+    <Property Name="hinhanh" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="maphong" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Phongban">
+    <Key>
+      <PropertyRef Name="maphong" />
+    </Key>
+    <Property Name="maphong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenphong" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_nhanvien_phongban">
+    <End Role="Nhanvien" Type="QLNhanvien.Store.Nhanvien" Multiplicity="*" />
+    <End Role="Phongban" Type="QLNhanvien.Store.Phongban" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Phongban">
+        <PropertyRef Name="maphong" />
+      </Principal>
+      <Dependent Role="Nhanvien">
+        <PropertyRef Name="maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,175 @@
+﻿@model IEnumerable<QLBANHANG.Models.MATHANG>
+@{
+    ViewBag.Title = "Tìm kiếm mặt hàng";
+    Layout = "~/Views/Shared/_LayoutQLBH.cshtml";
+}
+
+@section footer{
+    <script>
+        $(document).ready(function () {
+            $('#multi-filter-select').DataTable({
+                "pageLength": 10,
+                initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var select = $('<select class="form-control"><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search(val ? '^' + val + '$' : '', true, false)
+                                    .draw();
+                            });
+
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
+
+            $('.soluong').on('input', function () {
+                var targetId = $(this).data('target');
+                var inputValue = $(this).val() * $('.giaban' + targetId.charAt(targetId.length - 1)).html();
+                $('#' + targetId).html(inputValue);
+            });
+        });
+    </script>
+}
+<div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="@Url.Action("TimKiem", "TrangChu")">
+                        <i class="fas fa-search"></i>
+                        <p>Tìm kiếm</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("XuLyDonHang", "TrangChu")">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <p>Xử lý đơn hàng và hóa đơn</p>
+                    </a>
+                </li>
+                <li class="d-flex justify-content-center mt-3">
+                    <a href="@Url.Action("Index", "TrangChu")" class="btn btn-danger">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title">Tìm kiếm mặt hàng</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="multi-filter-select" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MAMH)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TENMH)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LOAIMATHANG.TENLMH)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SOLUONGTK)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DONVI)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.VITRI)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.GIABAN)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MAMH)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TENMH)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LOAIMATHANG.TENLMH)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SOLUONGTK)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DONVI)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.VITRI)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.GIABAN)
+                                    </th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @{ var i = -1;}
+                                @foreach (var item in Model)
+                                {
+                                    i = i + 1;
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MAMH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TENMH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LOAIMATHANG.TENLMH)
+                                        </td>
+                                        <td>
+                                            @if (item.SOLUONGTK <= 20)
+                                            {
+                                                <span class="text-danger">
+                                                    @Html.DisplayFor(modelItem => item.SOLUONGTK, new { @class = "text-danger" })
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.SOLUONGTK)
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DONVI)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VITRI)
+                                        </td>
+                                        <td class="giaban@{@i}">
+                                            @Html.DisplayFor(modelItem => item.GIABAN)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

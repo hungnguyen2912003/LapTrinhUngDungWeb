@@ -1,0 +1,55 @@
+﻿body {
+    margin-top: 0px;
+    margin-left: 100px;
+}
+
+#banner {
+    width: 800px;
+    background-color: aqua;
+    height: 80px;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 30px;
+    color: green;
+    font-weight: bold;
+}
+
+#footer {
+    width: 800px;
+    background-color: violet;
+    height: 50px;
+    border: 1px solid black;
+    float: left;
+}
+
+#content {
+    width: 800px;
+    background-color: pink;
+    height: 400px;
+    float: left;
+}
+
+#left {
+    width: 150px;
+    background-color: aquamarine;
+    border: 1px solid black;
+    height: 398px;
+    float: left;
+}
+
+#right {
+    width: 645px;
+    background-color: beige;
+    border: 1px solid black;
+    height: 398px;
+    float: left;
+}
+
+#container {
+    width: 800px;
+    height: auto;
+    float: left;
+    margin: auto;
+    border: 5px solid red;
+}

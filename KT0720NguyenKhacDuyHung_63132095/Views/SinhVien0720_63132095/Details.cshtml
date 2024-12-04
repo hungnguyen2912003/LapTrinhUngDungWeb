@@ -1,0 +1,39 @@
+﻿@model KT0720NguyenKhacDuyHung_63132095.Models.SINHVIEN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div style="display: flex;">
+        <div class="col-md-3" style="text-align: right; padding-right: 20px; margin-top: 80px;">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src="@Model.AnhSV"/>
+        </div>
+        <div class="col-md-9" style="font-size: medium; height: 45px; line-height: 25px;">
+            <h2>THÔNG TIN CHI TIẾT</h2>
+            <div style="display: flex;">
+                <div>
+                    <p>Mã sinh viên:</p>
+                    <p>Họ sinh viên:</p>
+                    <p>Tên sinh viên:</p>
+                    <p>Giới tính:</p>
+                    <p>Ngày sinh:</p>
+                    <p>Địa chỉ:</p>
+                    <p>Lớp:</p>
+                </div>
+                <div style="padding-left: 20px;">
+                    <p>@Html.DisplayFor(model => model.MaSV)</p>
+                    <p>@Html.DisplayFor(model => model.HoSV)</p>
+                    <p>@Html.DisplayFor(model => model.TenSV)</p>
+                    <p>@(Model.Gioitinh == true ? "Nam" : "Nữ")</p>
+                    <p>@(Model.Ngsinh.ToString("dd'/'MM'/'yyyy"))</p>
+                    <p>@Html.DisplayFor(model => model.Dchi)</p>
+                    <p>@Html.DisplayFor(model => model.LOP.Tenlop)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,23 @@
+﻿@model BTT3_Nhom9_63CNTT4.Models.StrongView
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StrongView</title>
+</head>
+<body>
+	<div>
+		<h3>StrongView</h3>
+		<h4>Id @Html.TextBoxFor(model => model.Id)</h4>
+		<h4>Name @Html.TextBoxFor(model => model.Name)</h4>
+		<h4>Male @Html.TextBoxFor(model => model.Gender)</h4>
+		<h4>List skill</h4>
+		@Html.ListBoxFor(model => model.skills, new SelectList(Enum.GetValues(typeof(BTT3_Nhom9_63CNTT4.Models.skills))))
+	</div>
+</body>
+</html>

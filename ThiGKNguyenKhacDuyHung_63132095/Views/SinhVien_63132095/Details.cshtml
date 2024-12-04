@@ -1,0 +1,34 @@
+﻿@model ThiGKNguyenKhacDuyHung_63132095.Models.Sach
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div style="display: flex;">
+        <div class="col-md-3" style="text-align: right; padding-right: 20px; margin-top: 80px;">
+            <img style="width: 200px; height: 200px;" src="@Model.anhbia" />
+        </div>
+        <div class="col-md-9" style="font-size: medium; height: 45px; line-height: 25px;">
+            <h2>THÔNG TIN CHI TIẾT</h2>
+            <div style="display: flex;">
+                <div>
+                    <p>Mã sách:</p>
+                    <p>Tên sách:</p>
+                    <p>Ngày xuất bản:</p>
+                    <p>Nhà xuất bản:</p>
+                    <p>Mã loại sách:</p>
+                </div>
+                <div style="padding-left: 20px;">
+                    <p>@Html.DisplayFor(model => model.masach)</p>
+                    <p>@Html.DisplayFor(model => model.tensach)</p>
+                    <p>@(Model.ngayxuatban.ToString("dd'/'MM'/'yyyy"))</p>
+                    <p>@Html.DisplayFor(model => model.nhaxuatban)</p>
+                    <p>@Html.DisplayFor(model => model.Loaisach.maloaisach)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

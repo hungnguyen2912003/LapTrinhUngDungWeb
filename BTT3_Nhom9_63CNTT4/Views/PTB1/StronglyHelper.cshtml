@@ -1,0 +1,26 @@
+﻿@model BTT3_Nhom9_63CNTT4.Models.PTB1
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StronglyHelper</title>
+</head>
+<body>
+	<div>
+		@using (Html.BeginForm("StronglyHelper", "PTB1", FormMethod.Post))
+		{
+			<h2>Giải phương trình bậc nhất</h2>
+			<h4>Nhập a: @Html.TextBoxFor(model => model.a)</h4>
+			<h4>Nhập b: @Html.TextBoxFor(model => model.b)</h4>
+			<input type="submit" value="Tính toán PTB1" />
+			<h4>Kết quả: @ViewBag.KQ</h4>
+		}
+		@{ Html.EndForm();}
+	</div>
+</body>
+</html>

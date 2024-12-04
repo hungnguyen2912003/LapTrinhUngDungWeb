@@ -1,0 +1,25 @@
+﻿@model List<WebApp1.Models.Subject>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Danh sách môn học</title>
+</head>
+<body>
+    <div>
+        <ul>
+            @foreach(var s in Model)
+            {
+                <li>
+                    @s.Id,  <b>@s.Name,  </b>    @s.Sodvht
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

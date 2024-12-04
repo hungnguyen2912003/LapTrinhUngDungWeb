@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BTT6_Nhom9_63CNTT4.Models.Nhanvien>
+@{
+    ViewBag.Title = "Danh sách nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tìm kiếm nhân viên</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <input type="text" name="filter" placeholder="Nhập tên nhân viên" required />
+        <input type="submit" value="Tìm kiếm" />
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Thêm nhân viên", "Create")
+</p>
+
+
+<h2>Danh sách nhân viên</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Mã Nhân viên</th>
+            <th>Họ Tên Nhân viên</th>
+            <th>Hình ảnh</th>
+            <th>Lương</th>
+            <th>Ngày Sinh</th>
+            <th>Tên Phòng</th>
+            <th>Tên chức vụ</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotennv)
+                </td>
+                <td><img src="@item.Hinhanh" alt="Hình ảnh" style="width: 100px; height: 100px" /></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Luong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngsinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phongban.Tenphong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chucvu.TenCV)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Manv }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Manv })
+                </td>
+            </tr>
+        }
+    </table>
+    <p>Số lượng nhân viên: @ViewBag.Count</p>
+    <p>Tổng số lương @ViewBag.Count nhân viên: @ViewBag.Luong</p>
+}

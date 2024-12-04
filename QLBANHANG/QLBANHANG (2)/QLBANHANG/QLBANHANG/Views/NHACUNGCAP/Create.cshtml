@@ -1,0 +1,179 @@
+﻿@model QLBANHANG.Models.NHACUNGCAP
+
+@{
+    ViewBag.Title = "Thêm nhà cung cấp";
+    Layout = "~/Views/Shared/_LayoutQLBH.cshtml";
+}
+
+<div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "ThongKe")">
+                        <i class="fas fa-coins"></i>
+                        <p>Thống kê</p>
+                    </a>
+                </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Danh mục</h4>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "LOAIMATHANG")">
+                        <i class="fas fa-boxes"></i>
+                        <p>Loại mặt hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "MATHANG")">
+                        <i class="fas fa-box"></i>
+                        <p>Mặt hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "HOADON")">
+                        <i class="fas fa-money-bill"></i>
+                        <p>Hóa đơn</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#nhaphang">
+                        <i class="fas fa-file-import"></i>
+                        <p>Nhập hàng</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="nhaphang">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="@Url.Action("Index", "DONNHAPHANG")">
+                                    <span class="sub-item">Đơn nhập hàng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CHITIETDONNHAPHANG")">
+                                    <span class="sub-item">Chi tiết đơn nhập hàng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("KiemTraHangNhap", "DONNHAPHANG")">
+                                    <span class="sub-item">Kiểm tra hàng nhập</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item active submenu">
+                    <a data-toggle="collapse" href="#nhacungcap">
+                        <i class="fas fa-store"></i>
+                        <p>Cung cấp</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse show" id="nhacungcap">
+                        <ul class="nav nav-collapse">
+                            <li class="active">
+                                <a href="@Url.Action("Index", "NHACUNGCAP")">
+                                    <span class="sub-item">Nhà cung cấp</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CHITIETNHACUNGCAP")">
+                                    <span class="sub-item">Chi tiết nhà cung cấp</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="d-flex justify-content-center mt-3">
+                    <a href="@Url.Action("Index", "TrangChu")" class="btn btn-danger">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Thêm nhà cung cấp</h4>
+                    </div>
+                </div>
+                @if (ViewBag.Check == 1)
+                {
+                    <div class="text-center btn btn-warning d-block p-3 position-relative" style="font-size: 15px; pointer-events: none"><i class="fas fa-exclamation-circle"></i> @ViewBag.Error</div>
+                }
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MANCC, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.MANCC, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mã nhà cung cấp" } })
+                                            @Html.ValidationMessageFor(model => model.MANCC, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TENNCC, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.TENNCC, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tên nhà cung cấp" } })
+                                            @Html.ValidationMessageFor(model => model.TENNCC, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa chỉ" } })
+                                            @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @placeholder = "Số điện thoại" } })
+                                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                                            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FAX, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.FAX, new { htmlAttributes = new { @class = "form-control", @placeholder = "Fax" } })
+                                            @Html.ValidationMessageFor(model => model.FAX, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> Thêm</button>
+                                            <a href="@Url.Action("Index", "NHACUNGCAP")" class="btn btn-default"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

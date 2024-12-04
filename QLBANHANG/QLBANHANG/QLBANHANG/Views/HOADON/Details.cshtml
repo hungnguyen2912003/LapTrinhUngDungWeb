@@ -1,0 +1,155 @@
+﻿@model IEnumerable<QLBANHANG.Models.CHITIETHOADON>
+@{
+    ViewBag.Title = "Phiếu thanh toán";
+    Layout = "~/Views/Shared/_LayoutQLBH.cshtml";
+    var i = 1;
+}
+
+<div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "ThongKe")">
+                        <i class="fas fa-coins"></i>
+                        <p>Thống kê</p>
+                    </a>
+                </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Danh mục</h4>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "LOAIMATHANG")">
+                        <i class="fas fa-boxes"></i>
+                        <p>Loại mặt hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "MATHANG")">
+                        <i class="fas fa-box"></i>
+                        <p>Mặt hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index", "HOADON")">
+                        <i class="fas fa-money-bill"></i>
+                        <p>Hóa đơn</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#nhaphang">
+                        <i class="fas fa-file-import"></i>
+                        <p>Nhập hàng</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="nhaphang">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="@Url.Action("Index", "DONNHAPHANG")">
+                                    <span class="sub-item">Đơn nhập hàng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CHITIETDONNHAPHANG")">
+                                    <span class="sub-item">Chi tiết đơn nhập hàng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("KiemTraHangNhap", "DONNHAPHANG")">
+                                    <span class="sub-item">Kiểm tra hàng nhập</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#nhacungcap">
+                        <i class="fas fa-store"></i>
+                        <p>Cung cấp</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="nhacungcap">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="@Url.Action("Index", "NHACUNGCAP")">
+                                    <span class="sub-item">Nhà cung cấp</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CHITIETNHACUNGCAP")">
+                                    <span class="sub-item">Chi tiết nhà cung cấp</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="d-flex justify-content-center mt-3">
+                    <a href="@Url.Action("Index", "TrangChu")" class="btn btn-danger">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Phiếu thanh toán</h4>
+                        <div class="ml-auto">
+                            <a href="@Url.Action("Delete", "HOADON", new {mahd = ViewBag.Mahd})" class="btn-sm btn-danger" style="text-decoration-line: none"><i class="fas fa-times"></i> Xóa</a>
+                            <a href="@Url.Action("Index", "HOADON")" class="btn-sm btn-default" style="text-decoration-line: none"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <h2 class="fw-bold">TIỆM TẠP HÓA THANH</h2>
+                        <h4>ĐC: Thôn Lương Hòa, xã Vĩnh Lương, thành phố Nha Trang, tỉnh Khánh Hòa</h4>
+                        <h4>SĐT: 0356278107</h4>
+                        <h1 class="mt-4 fw-bold">PHIẾU THANH TOÁN</h1>
+                        <div class="d-flex justify-content-between">
+                            <h4>Ngày: @ViewBag.Ngaylap</h4>
+                            <h4>Mã: @ViewBag.Mahd</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table-bordered table mt-4">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên mặt hàng</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(i++)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.MATHANG.TENMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SOLUONGMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.MATHANG.GIABAN)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.thanhtien)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <h1 class="fw-bold">Tổng tiền: <span class="ml-3">@ViewBag.Tongtien</span></h1>
+                        <h4 class="text-center"><i>Cảm ơn quý khách và hẹn gặp lại!</i></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

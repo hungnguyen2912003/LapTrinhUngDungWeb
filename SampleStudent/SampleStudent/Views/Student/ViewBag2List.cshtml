@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewBag2List</title>
+</head>
+<style>
+	table {
+		border: 2px solid #000000;
+	}
+
+	th, td {
+		padding: 8px;
+		text-align: left;
+		border: 2px solid #000000;
+	}
+</style>
+<body>
+	<div>
+		<h2>Danh sách sinh viên</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Họ tên sinh viên</th>
+					<th>Lớp</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var student in ViewBag.Student)
+				{
+					<tr>
+						<td>@student.Id</td>
+						<td>@student.Name</td>
+						<td>@student.Class</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<h2>Danh sách sinh viên học lớp 63CNTT4</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Họ tên sinh viên</th>
+					<th>Lớp</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var student in ViewBag.Student)
+				{
+					<tr>
+						<td>@student.Id</td>
+						<td>@student.Name</td>
+						<td>@student.Class</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

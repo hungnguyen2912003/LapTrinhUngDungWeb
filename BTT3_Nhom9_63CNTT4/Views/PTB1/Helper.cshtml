@@ -1,0 +1,47 @@
+﻿
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Helper</title>
+</head>
+<body>
+	<div>
+		@{ Html.BeginForm("Helper", "PTB1", "POST"); }
+		<div><h2>Phương trình bậc nhất</h2></div>
+		<label>Nhập a: @Html.TextBox("a")</label><br /><br />
+		<label>Nhập b: @Html.TextBox("b")</label><br /><br />
+		<input type="submit" value="Giải PTB1"/><br/><br/>
+		<label>
+			Kết quả:
+			@if (IsPost)
+			{
+				double a = double.Parse(Request["a"]);
+				double b = double.Parse(Request["b"]);
+				double kq = -b / a;
+				if (a == 0)
+				{
+					if (b == 0)
+					{
+						<input type="text" id="kq" name="kq" value="Phương trình vô số nghiệm" readonly style="padding: 5px"/>
+					}
+					else
+					{
+						<input type="text" id="kq" name="kq" value="Phương trình vô nghiệm" readonly style="padding: 5px"/>
+					}
+				}
+				else
+				{
+					<input type="text" name="kq" id="kq" value=@kq readonly style="padding: 5px"/>
+				}
+			}
+		</label>
+		@{Html.EndForm();}
+	</div>
+</body>
+</html>

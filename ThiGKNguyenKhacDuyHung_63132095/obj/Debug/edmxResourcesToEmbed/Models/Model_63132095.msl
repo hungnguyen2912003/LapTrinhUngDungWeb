@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ThiGK_63132095ModelStoreContainer" CdmEntityContainer="ThiGK_63132095Entities">
+    <EntitySetMapping Name="Loaisach">
+      <EntityTypeMapping TypeName="ThiGK_63132095Model.Loaisach">
+        <MappingFragment StoreEntitySet="Loaisach">
+          <ScalarProperty Name="maloaisach" ColumnName="maloaisach" />
+          <ScalarProperty Name="tenloaisach" ColumnName="tenloaisach" />
+          <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sach">
+      <EntityTypeMapping TypeName="ThiGK_63132095Model.Sach">
+        <MappingFragment StoreEntitySet="Sach">
+          <ScalarProperty Name="masach" ColumnName="masach" />
+          <ScalarProperty Name="tensach" ColumnName="tensach" />
+          <ScalarProperty Name="ngayxuatban" ColumnName="ngayxuatban" />
+          <ScalarProperty Name="nhaxuatban" ColumnName="nhaxuatban" />
+          <ScalarProperty Name="anhbia" ColumnName="anhbia" />
+          <ScalarProperty Name="maloaisach" ColumnName="maloaisach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ThiGK_63132095Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

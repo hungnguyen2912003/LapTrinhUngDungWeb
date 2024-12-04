@@ -1,0 +1,341 @@
+﻿@model QLBANHANG.Models.ThongKeSanPham
+@using System;
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Views/Shared/_LayoutQLBH.cshtml";
+    var i = 0;
+}
+
+<div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index", "ThongKe")">
+                        <i class="fas fa-coins"></i>
+                        <p>Thống kê</p>
+                    </a>
+                </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Danh mục</h4>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "LOAIMATHANG")">
+                        <i class="fas fa-boxes"></i>
+                        <p>Loại mặt hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "MATHANG")">
+                        <i class="fas fa-box"></i>
+                        <p>Mặt hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "HOADON")">
+                        <i class="fas fa-money-bill"></i>
+                        <p>Hóa đơn</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#nhaphang">
+                        <i class="fas fa-file-import"></i>
+                        <p>Nhập hàng</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="nhaphang">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="@Url.Action("Index", "DONNHAPHANG")">
+                                    <span class="sub-item">Đơn nhập hàng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CHITIETDONNHAPHANG")">
+                                    <span class="sub-item">Chi tiết đơn nhập hàng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("KiemTraHangNhap", "DONNHAPHANG")">
+                                    <span class="sub-item">Kiểm tra hàng nhập</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#nhacungcap">
+                        <i class="fas fa-store"></i>
+                        <p>Cung cấp</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="nhacungcap">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="@Url.Action("Index", "NHACUNGCAP")">
+                                    <span class="sub-item">Nhà cung cấp</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CHITIETNHACUNGCAP")">
+                                    <span class="sub-item">Chi tiết nhà cung cấp</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="d-flex justify-content-center mt-3">
+                    <a href="@Url.Action("Index", "TrangChu")" class="btn btn-danger">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Doanh thu và lợi nhuận</div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="mr-1">
+                            <label for="fromDay">Từ</label>
+                            <input type="date" id="fromDay" />
+                        </div>
+                        <div class="mr-2">
+                            <label for="fromDay">đến</label>
+                            <input type="date" id="toDay" />
+                        </div>
+                        <button class="btn btn-info d-flex align-items-center" style="height: 30px" onclick="layDuLieu()">Tìm</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="chart-container" style="pointer-events: none">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Ngày</th>
+                                        <th>Doanh thu</th>
+                                        <th>Lợi nhuận</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="load_data">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Sản phẩm bán chạy trong ngày</div>
+                </div>
+                <div class="card-body">
+                    @if (!Model.sanPhamBanChay.Any())
+                    {
+                        <p class="text-center">Chưa bán được sản phẩm nào</p>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center my-3">
+                            <span class="text-right col-2 " style="font-size: 15px">Tổng mặt hàng</span>
+                            <div style="background-color: red; height: 20px; width: 100%"></div><span class="ml-2">@Model.sanPhamBanChay.Sum(m => m.tongSoLuong)</span>
+                        </div>
+                        foreach (var item in Model.sanPhamBanChay)
+                        {
+                            i++;
+                            var result = (float)item.tongSoLuong / Model.sanPhamBanChay.Sum(m => m.tongSoLuong);
+                            double resultFinal = (Math.Round(result * 100) / 100) * 100;
+                            <div class="d-flex align-items-center my-3">
+                                <span class="text-right col-2 " style="font-size: 15px">@Html.DisplayFor(modelItem => item.tenMH)</span>
+                                <div style="background-color: gold; height: 20px; width: calc(@resultFinal%);"></div><span class="ml-2">@item.tongSoLuong</span>
+                            </div>
+                            if (i == 5)
+                            {
+                                i = 0;
+                                break;
+                            }
+                        }
+
+                    }
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Sản phẩm sắp hết</div>
+                </div>
+                <div class="card-body">
+                    @if (!Model.sanPhamHetHang.Any())
+                    {
+                        <p class="text-center">Chưa có sản phẩm nào sắp hết</p>
+                    }
+                    else
+                    {
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Mã mặt hàng</th>
+                                    <th>Tên mặt hàng</th>
+                                    <th>Tên loại mặt hàng</th>
+                                    <th>Đơn vị</th>
+                                    <th>SL tồn kho</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.sanPhamHetHang)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.MAMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TENMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.LOAIMATHANG.TENLMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.DONVI)</td>
+                                        <td class="text-danger">@Html.DisplayFor(modelItem => item.SOLUONGTK)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section footer{
+    <script>
+        $(function () {
+            var barChart = document.getElementById('barChart').getContext('2d');
+            var arrDoanhThu = [];
+            var arrLoiNhuan = [];
+            var arrNgay = [];
+            $.ajax({
+                url: '/ThongKe/LayDuLieu',
+                type: 'GET',
+                data: [],
+                success: function (rs) {
+                    var data = rs.Data.slice((rs.Data.length - 7 < 0) ? 0 : rs.Data.length - 7, rs.Data.length+1);
+                    load_data(data);
+                    $.each(data, function (i, item) {
+                        var strNgay = moment(item.NgayLapDon).format('DD/MM/YYYY');
+                        arrNgay.push(strNgay);
+                        arrDoanhThu.push(item.DoanhThu);
+                        arrLoiNhuan.push(item.LoiNhuan);
+                    })
+                    var myBarChart = new Chart(barChart, {
+                        type: 'bar',
+                        data: {
+                            labels: arrNgay,
+                            datasets: [
+                                {
+                                    label: 'Doanh thu',
+                                    backgroundColor: 'rgb(23, 125, 255)',
+                                    borderColor: 'rgb(23, 125, 255)',
+                                    data: arrDoanhThu,
+                                },
+                                {
+                                    label: 'Lợi nhuận',
+                                    backgroundColor: 'rgb(50, 205, 50)',
+                                    borderColor: 'rgb(50, 205, 50)',
+                                    data: arrLoiNhuan,
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                        }
+                    });
+                }
+            });
+        });
+        function layDuLieu() {
+            var barChart = document.getElementById('barChart').getContext('2d');
+            var arrDoanhThu = [];
+            var arrLoiNhuan = [];
+            var arrNgay = [];
+            var fromDay = document.getElementById('fromDay').value;
+            var toDay = document.getElementById('toDay').value;
+            var startDay = moment(fromDay).format('DD/MM/YYYY');
+            var endDay = moment(toDay).format('DD/MM/YYYY');
+            $.ajax({
+                url: '/ThongKe/LayDuLieu',
+                type: 'GET',
+                data: { fromDay: startDay, toDay: endDay },
+                success: function (rs) {
+                    var data = rs.Data.slice((rs.Data.length - 7 < 0) ? 0 : rs.Data.length - 7, rs.Data.length);
+                    load_data(data)
+                    $.each(data, function (i, item) {
+                        var strNgay = moment(item.NgayLapDon).format('DD/MM/YYYY');
+                        arrNgay.push(strNgay);
+                        arrDoanhThu.push(item.DoanhThu);
+                        arrLoiNhuan.push(item.LoiNhuan);
+                    })
+                    var myBarChart = new Chart(barChart, {
+                        type: 'bar',
+                        data: {
+                            labels: arrNgay,
+                            datasets: [
+                                {
+                                    label: 'Doanh thu',
+                                    backgroundColor: 'rgb(23, 125, 255)',
+                                    borderColor: 'rgb(23, 125, 255)',
+                                    data: arrDoanhThu,
+                                },
+                                {
+                                    label: 'Lợi nhuận',
+                                    backgroundColor: 'rgb(50, 205, 50)',
+                                    borderColor: 'rgb(50, 205, 50)',
+                                    data: arrLoiNhuan,
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                        }
+                    });
+                }
+            });
+        }
+        function load_data(data) {
+            var strHtml = "";
+            $.each(data, function (i, item) {
+                var strNgay = moment(item.NgayLapDon).format('DD/MM/YYYY');
+                strHtml += "<tr>";
+                strHtml += "<td>" + (i + 1) + "</td>"
+                strHtml += "<td>" + strNgay + "</td>"
+                strHtml += "<td>" + item.DoanhThu + "</td>"
+                strHtml += "<td>" + item.LoiNhuan + "</td>"
+                strHtml += "</tr>";
+            });
+            $('#load_data').html(strHtml);
+        }
+
+    </script>
+}

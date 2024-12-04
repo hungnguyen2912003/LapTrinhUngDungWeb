@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BTT6_Nhom9_63CNTT4.Models.Chucvu>
+
+@{
+    ViewBag.Title = "Danh sách chức vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách chức vụ</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaCV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenCV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaCV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenCV)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaCV }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaCV })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="QLNhanvien" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="QLNhanvienContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Nhanvien" EntityType="QLNhanvien.Nhanvien" />
+    <EntitySet Name="Phongban" EntityType="QLNhanvien.Phongban" />
+    <AssociationSet Name="fk_nhanvien_phongban" Association="QLNhanvien.fk_nhanvien_phongban">
+      <End Role="Nhanvien" EntitySet="Nhanvien" />
+      <End Role="Phongban" EntitySet="Phongban" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Nhanvien">
+    <Key>
+      <PropertyRef Name="manhanvien" />
+    </Key>
+    <Property Name="manhanvien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tennhanvien" Type="String" Nullable="false" />
+    <Property Name="ngaysinh" Type="DateTime" Nullable="false" />
+    <Property Name="luong" Type="Decimal" Nullable="false" />
+    <Property Name="hinhanh" Type="String" Nullable="false" />
+    <Property Name="maphong" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Phongban" Relationship="QLNhanvien.fk_nhanvien_phongban" FromRole="Nhanvien" ToRole="Phongban" />
+  </EntityType>
+  <EntityType Name="Phongban">
+    <Key>
+      <PropertyRef Name="maphong" />
+    </Key>
+    <Property Name="maphong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenphong" Type="String" Nullable="false" />
+    <NavigationProperty Name="Nhanvien" Relationship="QLNhanvien.fk_nhanvien_phongban" FromRole="Phongban" ToRole="Nhanvien" />
+  </EntityType>
+  <Association Name="fk_nhanvien_phongban">
+    <End Type="QLNhanvien.Nhanvien" Role="Nhanvien" Multiplicity="*" />
+    <End Type="QLNhanvien.Phongban" Role="Phongban" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Phongban">
+        <PropertyRef Name="maphong" />
+      </Principal>
+      <Dependent Role="Nhanvien">
+        <PropertyRef Name="maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

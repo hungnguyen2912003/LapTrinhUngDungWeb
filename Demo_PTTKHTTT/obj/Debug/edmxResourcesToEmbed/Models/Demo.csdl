@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Demo_QLBHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETHOADON">
+    <Key>
+      <PropertyRef Name="MAMH" />
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAMH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAHD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONGMH" Type="Int32" />
+    <NavigationProperty Name="HOADON" Relationship="Self.FK_CHITIETH_TRONG2_HOADON" FromRole="CHITIETHOADON" ToRole="HOADON" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK_CHITIETH_TRONG3_MATHANG" FromRole="CHITIETHOADON" ToRole="MATHANG" />
+  </EntityType>
+  <EntityType Name="DONNHAPHANG">
+    <Key>
+      <PropertyRef Name="MADNH" />
+    </Key>
+    <Property Name="MADNH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TRANGTHAI" Type="Boolean" />
+    <Property Name="NGAYLAPDNH" Type="DateTime" Precision="3" />
+    <Property Name="NGAYXACNHANDNH" Type="DateTime" Precision="3" />
+    <Property Name="TONGTIENDNH" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="TRONG1" Relationship="Self.FK_TRONG1_TRONG1_DONNHAPH" FromRole="DONNHAPHANG" ToRole="TRONG1" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAHD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NGAYLAPHD" Type="DateTime" Precision="3" />
+    <Property Name="TONGTIENHD" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="CHITIETHOADON" Relationship="Self.FK_CHITIETH_TRONG2_HOADON" FromRole="HOADON" ToRole="CHITIETHOADON" />
+  </EntityType>
+  <EntityType Name="LOAIMATHANG">
+    <Key>
+      <PropertyRef Name="MALMH" />
+    </Key>
+    <Property Name="MALMH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENLMH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK_MATHANG_THUOC_LOAIMATH" FromRole="LOAIMATHANG" ToRole="MATHANG" />
+  </EntityType>
+  <EntityType Name="MATHANG">
+    <Key>
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MAMH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MALMH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENMH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SOLUONGTK" Type="Int32" />
+    <Property Name="VITRI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MOTA" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GIABAN" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="GIAMUA" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="CHITIETHOADON" Relationship="Self.FK_CHITIETH_TRONG3_MATHANG" FromRole="MATHANG" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="LOAIMATHANG" Relationship="Self.FK_MATHANG_THUOC_LOAIMATH" FromRole="MATHANG" ToRole="LOAIMATHANG" />
+    <NavigationProperty Name="TRONG1" Relationship="Self.FK_TRONG1_TRONG4_MATHANG" FromRole="MATHANG" ToRole="TRONG1" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="Self.CHITIETNHACUNGCAP" FromRole="MATHANG" ToRole="NHACUNGCAP" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MANCC" />
+    </Key>
+    <Property Name="MANCC" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENNCC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FAX" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.CHITIETNHACUNGCAP" FromRole="NHACUNGCAP" ToRole="MATHANG" />
+  </EntityType>
+  <EntityType Name="TRONG1">
+    <Key>
+      <PropertyRef Name="MAMH" />
+      <PropertyRef Name="MADNH" />
+    </Key>
+    <Property Name="MAMH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MADNH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONGNH" Type="Int32" />
+    <NavigationProperty Name="DONNHAPHANG" Relationship="Self.FK_TRONG1_TRONG1_DONNHAPH" FromRole="TRONG1" ToRole="DONNHAPHANG" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK_TRONG1_TRONG4_MATHANG" FromRole="TRONG1" ToRole="MATHANG" />
+  </EntityType>
+  <Association Name="FK_CHITIETH_TRONG2_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MAHD" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETH_TRONG3_MATHANG">
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATHANG">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRONG1_TRONG1_DONNHAPH">
+    <End Role="DONNHAPHANG" Type="Self.DONNHAPHANG" Multiplicity="1" />
+    <End Role="TRONG1" Type="Self.TRONG1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONNHAPHANG">
+        <PropertyRef Name="MADNH" />
+      </Principal>
+      <Dependent Role="TRONG1">
+        <PropertyRef Name="MADNH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MATHANG_THUOC_LOAIMATH">
+    <End Role="LOAIMATHANG" Type="Self.LOAIMATHANG" Multiplicity="1" />
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIMATHANG">
+        <PropertyRef Name="MALMH" />
+      </Principal>
+      <Dependent Role="MATHANG">
+        <PropertyRef Name="MALMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRONG1_TRONG4_MATHANG">
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="1" />
+    <End Role="TRONG1" Type="Self.TRONG1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATHANG">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="TRONG1">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CHITIETNHACUNGCAP">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="*" />
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Demo_QLBHEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" />
+    <EntitySet Name="DONNHAPHANG" EntityType="Self.DONNHAPHANG" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" />
+    <EntitySet Name="LOAIMATHANG" EntityType="Self.LOAIMATHANG" />
+    <EntitySet Name="MATHANG" EntityType="Self.MATHANG" />
+    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" />
+    <EntitySet Name="TRONG1" EntityType="Self.TRONG1" />
+    <AssociationSet Name="FK_CHITIETH_TRONG2_HOADON" Association="Self.FK_CHITIETH_TRONG2_HOADON">
+      <End Role="HOADON" EntitySet="HOADON" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETH_TRONG3_MATHANG" Association="Self.FK_CHITIETH_TRONG3_MATHANG">
+      <End Role="MATHANG" EntitySet="MATHANG" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRONG1_TRONG1_DONNHAPH" Association="Self.FK_TRONG1_TRONG1_DONNHAPH">
+      <End Role="DONNHAPHANG" EntitySet="DONNHAPHANG" />
+      <End Role="TRONG1" EntitySet="TRONG1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MATHANG_THUOC_LOAIMATH" Association="Self.FK_MATHANG_THUOC_LOAIMATH">
+      <End Role="LOAIMATHANG" EntitySet="LOAIMATHANG" />
+      <End Role="MATHANG" EntitySet="MATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRONG1_TRONG4_MATHANG" Association="Self.FK_TRONG1_TRONG4_MATHANG">
+      <End Role="MATHANG" EntitySet="MATHANG" />
+      <End Role="TRONG1" EntitySet="TRONG1" />
+    </AssociationSet>
+    <AssociationSet Name="CHITIETNHACUNGCAP" Association="Self.CHITIETNHACUNGCAP">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="MATHANG" EntitySet="MATHANG" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

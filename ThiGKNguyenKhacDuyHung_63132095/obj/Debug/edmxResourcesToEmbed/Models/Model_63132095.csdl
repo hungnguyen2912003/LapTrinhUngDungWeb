@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ThiGK_63132095Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Loaisach">
+    <Key>
+      <PropertyRef Name="maloaisach" />
+    </Key>
+    <Property Name="maloaisach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenloaisach" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ghichu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sach" Relationship="Self.fk_sach_loaisach" FromRole="Loaisach" ToRole="Sach" />
+  </EntityType>
+  <EntityType Name="Sach">
+    <Key>
+      <PropertyRef Name="masach" />
+    </Key>
+    <Property Name="masach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tensach" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ngayxuatban" Type="DateTime" Precision="3" />
+    <Property Name="nhaxuatban" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="anhbia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="maloaisach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Loaisach" Relationship="Self.fk_sach_loaisach" FromRole="Sach" ToRole="Loaisach" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="fk_sach_loaisach">
+    <End Role="Loaisach" Type="Self.Loaisach" Multiplicity="0..1" />
+    <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loaisach">
+        <PropertyRef Name="maloaisach" />
+      </Principal>
+      <Dependent Role="Sach">
+        <PropertyRef Name="maloaisach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ThiGK_63132095Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Loaisach" EntityType="Self.Loaisach" />
+    <EntitySet Name="Sach" EntityType="Self.Sach" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="fk_sach_loaisach" Association="Self.fk_sach_loaisach">
+      <End Role="Loaisach" EntitySet="Loaisach" />
+      <End Role="Sach" EntitySet="Sach" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

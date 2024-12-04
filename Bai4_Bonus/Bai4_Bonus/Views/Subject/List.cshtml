@@ -1,0 +1,25 @@
+﻿@model List<Bai4_Bonus.Models.Subject>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <div> 
+        <ul>
+            @foreach(var s in Model)
+            {
+                <li>
+                    @s.id, <i>@s.name</i>, @s.sdvht 
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

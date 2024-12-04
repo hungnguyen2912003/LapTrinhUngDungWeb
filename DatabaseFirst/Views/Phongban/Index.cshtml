@@ -1,0 +1,40 @@
+﻿﻿@model IEnumerable<DatabaseFirst.Models.Phongban>
+@{
+    ViewBag.Title = "Thêm phòng ban";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách phòng ban</h2>
+
+<p>
+    @Html.ActionLink("Thêm Phòng Ban", "Create")
+</p>
+<table class="table mt-2">
+    <tr>
+        <th>
+            Mã Phòng
+        </th>
+        <th>
+            Tên Phòng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.maphong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenphong)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maphong }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maphong })
+            </td>
+        </tr>
+    }
+
+</table>
+

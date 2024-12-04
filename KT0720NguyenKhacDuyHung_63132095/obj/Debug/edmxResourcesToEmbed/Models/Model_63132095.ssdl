@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KT0720_63132095Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="KT0720_63132095ModelStoreContainer">
+    <EntitySet Name="LOP" EntityType="KT0720_63132095Model.Store.LOP" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SINHVIEN" EntityType="KT0720_63132095Model.Store.SINHVIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="KT0720_63132095Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_lop_sinhvien" Association="KT0720_63132095Model.Store.fk_lop_sinhvien">
+      <End Role="LOP" EntitySet="LOP" />
+      <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="LOP">
+    <Key>
+      <PropertyRef Name="Malop" />
+    </Key>
+    <Property Name="Malop" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Tenlop" Type="nvarchar" Nullable="true" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="SINHVIEN">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="HoSV" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="TenSV" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="Ngsinh" Type="datetime" Nullable="true" />
+    <Property Name="Gioitinh" Type="bit" Nullable="true" />
+    <Property Name="AnhSV" Type="varchar(max)" Nullable="true" />
+    <Property Name="Dchi" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Malop" Type="varchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="fk_lop_sinhvien">
+    <End Role="LOP" Type="KT0720_63132095Model.Store.LOP" Multiplicity="0..1" />
+    <End Role="SINHVIEN" Type="KT0720_63132095Model.Store.SINHVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOP">
+        <PropertyRef Name="Malop" />
+      </Principal>
+      <Dependent Role="SINHVIEN">
+        <PropertyRef Name="Malop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

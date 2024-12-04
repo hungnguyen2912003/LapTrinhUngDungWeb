@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = null;
+    ViewExample.Models.Subject subject = (ViewExample.Models.Subject)ViewBag.Subject;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewBagObj</title>
+</head>
+<body>
+    <div> 
+        @subject.Id, @subject.Name, @subject.Dvht   
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Demo_PTTKHTTT.Models.MATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENMH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONGTK)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VITRI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MOTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GIABAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GIAMUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LOAIMATHANG.TENLMH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENMH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SOLUONGTK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VITRI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MOTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GIABAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GIAMUA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LOAIMATHANG.TENLMH)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MAMH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MAMH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MAMH })
+        </td>
+    </tr>
+}
+
+</table>

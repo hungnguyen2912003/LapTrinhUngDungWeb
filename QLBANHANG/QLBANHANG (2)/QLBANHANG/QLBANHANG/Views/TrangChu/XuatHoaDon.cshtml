@@ -1,0 +1,91 @@
+﻿@model IEnumerable<QLBANHANG.Models.CHITIETHOADON>
+@{
+    ViewBag.Title = "Phiêu thanh toán";
+    Layout = "~/Views/Shared/_LayoutQLBH.cshtml";
+    var i = 1;
+}
+
+<div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="@Url.Action("TimKiem", "ThongKe")">
+                        <i class="fas fa-store-alt"></i>
+                        <p>Tìm kiếm</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("XuLyDonHang", "TrangChu")">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <p>Xử lý đơn hàng và hóa đơn</p>
+                    </a>
+                </li>
+                <li class="d-flex justify-content-center mt-3">
+                    <a href="@Url.Action("Index", "TrangChu")" class="btn btn-danger">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Phiếu thanh toán</h4>
+                        <div class="ml-auto">
+                            <a href="#" class="btn-sm btn-primary ml-auto" style="text-decoration-line: none"><i class="fas fa-file-export"></i> Xuất hóa đơn</a>
+                            <a href="@Url.Action("XuLyDonHang", "TrangChu")" class="btn-sm btn-default ml-auto" style="text-decoration-line: none"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                        </div> 
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <h2 class="fw-bold">TIỆM TẠP HÓA THANH</h2>
+                        <h4>ĐC: Thôn Lương Hòa, xã Vĩnh Lương, thành phố Nha Trang, tỉnh Khánh Hòa</h4>
+                        <h4>SĐT: 0356278107</h4>
+                        <h1 class="mt-4 fw-bold">PHIẾU THANH TOÁN</h1>
+                        <div class="d-flex justify-content-between">
+                            <h4>Ngày: @ViewBag.Ngaylap</h4>
+                            <h4>Mã: @ViewBag.Mahd</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table-bordered table mt-4">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên mặt hàng</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(i++)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.MATHANG.TENMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SOLUONGMH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.MATHANG.GIABAN)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.thanhtien)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <h1 class="fw-bold">Tổng tiền: <span class="ml-3">@ViewBag.Tongtien</span></h1>
+                        <h4 class="text-center"><i>Cảm ơn quý khách và hẹn gặp lại!</i></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

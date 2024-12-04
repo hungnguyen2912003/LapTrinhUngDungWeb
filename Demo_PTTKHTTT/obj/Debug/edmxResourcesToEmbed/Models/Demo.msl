@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Demo_QLBHModelStoreContainer" CdmEntityContainer="Demo_QLBHEntities">
+    <EntitySetMapping Name="CHITIETHOADON">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.CHITIETHOADON">
+        <MappingFragment StoreEntitySet="CHITIETHOADON">
+          <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+          <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+          <ScalarProperty Name="SOLUONGMH" ColumnName="SOLUONGMH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONNHAPHANG">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.DONNHAPHANG">
+        <MappingFragment StoreEntitySet="DONNHAPHANG">
+          <ScalarProperty Name="MADNH" ColumnName="MADNH" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="NGAYLAPDNH" ColumnName="NGAYLAPDNH" />
+          <ScalarProperty Name="NGAYXACNHANDNH" ColumnName="NGAYXACNHANDNH" />
+          <ScalarProperty Name="TONGTIENDNH" ColumnName="TONGTIENDNH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOADON">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.HOADON">
+        <MappingFragment StoreEntitySet="HOADON">
+          <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+          <ScalarProperty Name="NGAYLAPHD" ColumnName="NGAYLAPHD" />
+          <ScalarProperty Name="TONGTIENHD" ColumnName="TONGTIENHD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIMATHANG">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.LOAIMATHANG">
+        <MappingFragment StoreEntitySet="LOAIMATHANG">
+          <ScalarProperty Name="MALMH" ColumnName="MALMH" />
+          <ScalarProperty Name="TENLMH" ColumnName="TENLMH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MATHANG">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.MATHANG">
+        <MappingFragment StoreEntitySet="MATHANG">
+          <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+          <ScalarProperty Name="MALMH" ColumnName="MALMH" />
+          <ScalarProperty Name="TENMH" ColumnName="TENMH" />
+          <ScalarProperty Name="SOLUONGTK" ColumnName="SOLUONGTK" />
+          <ScalarProperty Name="VITRI" ColumnName="VITRI" />
+          <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+          <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
+          <ScalarProperty Name="GIAMUA" ColumnName="GIAMUA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHACUNGCAP">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.NHACUNGCAP">
+        <MappingFragment StoreEntitySet="NHACUNGCAP">
+          <ScalarProperty Name="MANCC" ColumnName="MANCC" />
+          <ScalarProperty Name="TENNCC" ColumnName="TENNCC" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRONG1">
+      <EntityTypeMapping TypeName="Demo_QLBHModel.TRONG1">
+        <MappingFragment StoreEntitySet="TRONG1">
+          <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+          <ScalarProperty Name="MADNH" ColumnName="MADNH" />
+          <ScalarProperty Name="SOLUONGNH" ColumnName="SOLUONGNH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CHITIETNHACUNGCAP" TypeName="Demo_QLBHModel.CHITIETNHACUNGCAP" StoreEntitySet="CHITIETNHACUNGCAP">
+      <EndProperty Name="NHACUNGCAP">
+        <ScalarProperty Name="MANCC" ColumnName="MANCC" />
+      </EndProperty>
+      <EndProperty Name="MATHANG">
+        <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLNhanvien_DatabaseFirstModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLNhanvien_DatabaseFirstModelStoreContainer">
+    <EntitySet Name="Nhanvien" EntityType="QLNhanvien_DatabaseFirstModel.Store.Nhanvien" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Phongban" EntityType="QLNhanvien_DatabaseFirstModel.Store.Phongban" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_nhanvien_phongban" Association="QLNhanvien_DatabaseFirstModel.Store.fk_nhanvien_phongban">
+      <End Role="Phongban" EntitySet="Phongban" />
+      <End Role="Nhanvien" EntitySet="Nhanvien" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Nhanvien">
+    <Key>
+      <PropertyRef Name="manhanvien" />
+    </Key>
+    <Property Name="manhanvien" Type="int" Nullable="false" />
+    <Property Name="tennhanvien" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="ngaysinh" Type="datetime" Nullable="true" />
+    <Property Name="luong" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="hinhanh" Type="varchar(max)" Nullable="true" />
+    <Property Name="maphong" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Phongban">
+    <Key>
+      <PropertyRef Name="maphong" />
+    </Key>
+    <Property Name="maphong" Type="int" Nullable="false" />
+    <Property Name="tenphong" Type="nvarchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <Association Name="fk_nhanvien_phongban">
+    <End Role="Phongban" Type="QLNhanvien_DatabaseFirstModel.Store.Phongban" Multiplicity="0..1" />
+    <End Role="Nhanvien" Type="QLNhanvien_DatabaseFirstModel.Store.Nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phongban">
+        <PropertyRef Name="maphong" />
+      </Principal>
+      <Dependent Role="Nhanvien">
+        <PropertyRef Name="maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLNhanvien_DatabaseFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Nhanvien">
+          <Key>
+            <PropertyRef Name="manhanvien" />
+          </Key>
+          <Property Name="manhanvien" Type="Int32" Nullable="false" />
+          <Property Name="tennhanvien" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="3" />
+          <Property Name="luong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="maphong" Type="Int32" />
+          <NavigationProperty Name="Phongban" Relationship="Self.fk_nhanvien_phongban" FromRole="Nhanvien" ToRole="Phongban" />
+        </EntityType>
+        <EntityType Name="Phongban">
+          <Key>
+            <PropertyRef Name="maphong" />
+          </Key>
+          <Property Name="maphong" Type="Int32" Nullable="false" />
+          <Property Name="tenphong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nhanvien" Relationship="Self.fk_nhanvien_phongban" FromRole="Phongban" ToRole="Nhanvien" />
+        </EntityType>
+        <Association Name="fk_nhanvien_phongban">
+          <End Role="Phongban" Type="Self.Phongban" Multiplicity="0..1" />
+          <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phongban">
+              <PropertyRef Name="maphong" />
+            </Principal>
+            <Dependent Role="Nhanvien">
+              <PropertyRef Name="maphong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLNhanvien_DatabaseFirstEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Nhanvien" EntityType="Self.Nhanvien" />
+          <EntitySet Name="Phongban" EntityType="Self.Phongban" />
+          <AssociationSet Name="fk_nhanvien_phongban" Association="Self.fk_nhanvien_phongban">
+            <End Role="Phongban" EntitySet="Phongban" />
+            <End Role="Nhanvien" EntitySet="Nhanvien" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLNhanvien_DatabaseFirstModelStoreContainer" CdmEntityContainer="QLNhanvien_DatabaseFirstEntities">
+    <EntitySetMapping Name="Nhanvien">
+      <EntityTypeMapping TypeName="IsTypeOf(QLNhanvien_DatabaseFirstModel.Nhanvien)">
+        <MappingFragment StoreEntitySet="Nhanvien">
+          <ScalarProperty Name="manhanvien" ColumnName="manhanvien" />
+          <ScalarProperty Name="tennhanvien" ColumnName="tennhanvien" />
+          <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+          <ScalarProperty Name="luong" ColumnName="luong" />
+          <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+          <ScalarProperty Name="maphong" ColumnName="maphong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phongban">
+      <EntityTypeMapping TypeName="IsTypeOf(QLNhanvien_DatabaseFirstModel.Phongban)">
+        <MappingFragment StoreEntitySet="Phongban">
+          <ScalarProperty Name="maphong" ColumnName="maphong" />
+          <ScalarProperty Name="tenphong" ColumnName="tenphong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giải Phương Trình Bậc Nhất</title>
+</head>
+<body>
+	<div>
+		<h3>GIẢI PHƯƠNG TRÌNH BẬC NHẤT</h3>
+		<form method="post">
+			Nhập a: <input type="text" id="a" name="a" /><br /><br />
+			Nhập b: <input type="text" id="b" name="b" /><br /><br />
+			<input type="submit" value="Giải PTB1" /><br /><br />
+			Kết quả:
+			@if (IsPost)
+			{
+				double a = double.Parse(Request["a"]);
+				double b = double.Parse(Request["b"]);
+				double kq = -b / a;
+				if (a == 0)
+				{
+					if (b == 0)
+					{
+						<input type="text" name="kq" value="PT_vô_số_nghiệm" />
+					}
+					else
+					{
+						<input type="text" name="kq" value="PT_vô_nghiệm" />
+					}
+				}
+				else
+				{
+					<input type="text" name="kq" value=@kq />
+				}
+			}
+		</form>
+	</div>
+</body>
+</html>

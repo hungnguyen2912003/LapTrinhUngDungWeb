@@ -1,0 +1,98 @@
+﻿@*@model IEnumerable<KT0720NguyenKhacDuyHung_63132095.Models.SINHVIEN>*@
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<KT0720NguyenKhacDuyHung_63132095.Models.SINHVIEN>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    th {
+        color: #4F96D4;
+    }
+</style>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Mã sinh viên
+            </th>
+            <th>
+                Họ sinh viên
+            </th>
+            <th>
+                Tên sinh viên
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Ảnh sinh viên
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Lớp
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model != null && Model.Any())
+    {
+        var i = 1;
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoSV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSV)
+                    </td>
+                    <td>
+                        @(item.Gioitinh == true ? "Nam" : "Nữ")
+                    </td>
+                    <td>
+                        @(item.Ngsinh.ToString("dd'/'MM'/'yyyy"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhSV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dchi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LOP.Tenlop)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaSV })
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    }
+    
+</table>
+
+<br />
+
+<div style="text-align: center;">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = 2 }))
+</div>
+

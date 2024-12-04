@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|e:\\ldudweb\\qlbanhang\\qlbanhang\\qlbanhang\\views\\thongke\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|solutionrelative:qlbanhang\\views\\thongke\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|e:\\ldudweb\\qlbanhang\\qlbanhang\\qlbanhang\\controllers\\thongkecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|solutionrelative:qlbanhang\\controllers\\thongkecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|e:\\ldudweb\\qlbanhang\\qlbanhang\\qlbanhang\\models\\sanphambanchay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|solutionrelative:qlbanhang\\models\\sanphambanchay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|e:\\ldudweb\\qlbanhang\\qlbanhang\\qlbanhang\\models\\thongkesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{185042C3-F8D7-4734-8514-F06640869166}|QLBANHANG\\QLBANHANG.csproj|solutionrelative:qlbanhang\\models\\thongkesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 278,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Views\\ThongKe\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLBANHANG\\Views\\ThongKe\\Index.cshtml",
+              "ToolTip": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Views\\ThongKe\\Index.cshtml",
+              "RelativeToolTip": "QLBANHANG\\Views\\ThongKe\\Index.cshtml",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAAAI4AAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T16:13:09.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ThongKeSanPham.cs",
+              "DocumentMoniker": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Models\\ThongKeSanPham.cs",
+              "RelativeDocumentMoniker": "QLBANHANG\\Models\\ThongKeSanPham.cs",
+              "ToolTip": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Models\\ThongKeSanPham.cs",
+              "RelativeToolTip": "QLBANHANG\\Models\\ThongKeSanPham.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T15:59:37.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SanPhamBanChay.cs",
+              "DocumentMoniker": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Models\\SanPhamBanChay.cs",
+              "RelativeDocumentMoniker": "QLBANHANG\\Models\\SanPhamBanChay.cs",
+              "ToolTip": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Models\\SanPhamBanChay.cs",
+              "RelativeToolTip": "QLBANHANG\\Models\\SanPhamBanChay.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T15:59:35.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ThongKeController.cs",
+              "DocumentMoniker": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Controllers\\ThongKeController.cs",
+              "RelativeDocumentMoniker": "QLBANHANG\\Controllers\\ThongKeController.cs",
+              "ToolTip": "E:\\LDUDWeb\\QLBANHANG\\QLBANHANG\\QLBANHANG\\Controllers\\ThongKeController.cs",
+              "RelativeToolTip": "QLBANHANG\\Controllers\\ThongKeController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwCMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T15:59:32.007Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

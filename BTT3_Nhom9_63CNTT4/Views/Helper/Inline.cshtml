@@ -1,0 +1,25 @@
+﻿
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>InlineHelper</title>
+</head>
+<body>
+	<div>
+		@helper AddHelper(int a, int b)
+		{
+			<label> Cộng hai số = @(a+b)</label>
+		}
+		<div> <label> @AddHelper(100, 200)</label></div>
+		<div> <label> @AddHelper(150, 300)</label></div>
+
+		@Html.ActionLink("TestHelper", "Index", "Student")
+	</div>
+</body>
+</html>

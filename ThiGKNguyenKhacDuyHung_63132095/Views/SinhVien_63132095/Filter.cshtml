@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ThiGKNguyenKhacDuyHung_63132095.Models.Sach>
+@{
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    th {
+        color: #4F96D4;
+    }
+</style>
+
+
+@using (Html.BeginForm("Filter", "SinhVien_63132095", FormMethod.Get))
+{
+    <div style="display: flex; justify-content: center;">
+        <div>
+            <p>Tên sách</p>
+        </div>
+        <div style="padding-left: 20px;">
+            <div>
+                @Html.TextBox("name")
+            </div>
+            <div style="margin-top: 15px;">
+                <input type="submit" class="btn btn-primary" value="Tìm kiếm" />
+                <button type="button" class="btn btn-primary">
+                    @Html.ActionLink("Nhập mới", "Filter", null, new { style = "color: white;" })
+                </button>
+            </div>
+        </div>
+    </div>
+}
+<br />
+<hr />
+<h2 style="text-align: center;">DANH SÁCH CÁC LOẠI SÁCH</h2>
+<br />
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Mã sách
+                </th>
+                <th>
+                    Ngày xuất bản
+                </th>
+                <th>
+                    Nhà xuất bản
+                </th>
+                <th>
+                    Ảnh bìa
+                </th>
+                <th>
+                    Mã loại sách
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.masach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tensach)
+                    </td>
+                    <td>
+                        @(item.ngayxuatban.ToString("dd'/'MM'/'yyyy"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nhaxuatban)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.anhbia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Loaisach.maloaisach)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xem chi tiết", "Details", new { id = item.masach })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="text-align: center; font-size: 20px">Không tìm thấy thông tin</p>
+}
+
+

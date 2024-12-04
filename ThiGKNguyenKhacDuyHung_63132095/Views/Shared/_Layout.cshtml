@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <style>
+        a {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #638DCB;
+        }
+    </style>
+    <nav class="navbar navbar-expand-sm">
+        <div class="container">
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-nav flex-grow-1">
+                    <span>@Html.ActionLink("Giới thiệu", "Introduction_63132095", "SinhVien_63132095")</span>&nbsp;|&nbsp;
+                    <span>@Html.ActionLink("Thêm mới", "Create", "SinhVien_63132095")</span>&nbsp;|&nbsp;
+                    <span>@Html.ActionLink("Danh sách", "List", "SinhVien_63132095")</span>&nbsp;|&nbsp;
+                    <span>@Html.ActionLink("Tìm kiếm", "Filter", "SinhVien_63132095")</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        <hr style="height: 2px; background-color: #74FFFF; border: none" />
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

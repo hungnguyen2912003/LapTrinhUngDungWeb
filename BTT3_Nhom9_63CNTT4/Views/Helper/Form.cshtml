@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    <div> 
+        @{ Html.BeginForm("Index", "Student");}
+            <div>Full Name</div>
+            @Html.TextBox("Full Name")
+            
+            <div>Password</div>
+            @Html.Password("Password")
+
+            <div>Photo</div>
+            <input name="Photo" type="file"/>
+            
+            <div>Married Status</div>
+            <label>@Html.CheckBox("Status") Single</label>
+            
+            <div>Gender</div>
+            <label>@Html.RadioButton("Gender", true) Male</label>
+            <label>@Html.RadioButton("Gender", false) Female</label>
+
+            <div>Description</div>
+            @Html.TextArea("Description")
+            @Html.Hidden("Active")
+            <hr />
+            <input type="submit" value="Submit"/>
+        @{Html.EndForm();}
+    </div>
+</body>
+</html>

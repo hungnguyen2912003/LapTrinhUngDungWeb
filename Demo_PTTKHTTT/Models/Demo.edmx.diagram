@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e043cc42f5444d39b8643145beec2aec" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="Demo_QLBHModel.CHITIETHOADON" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Demo_QLBHModel.DONNHAPHANG" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Demo_QLBHModel.HOADON" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Demo_QLBHModel.LOAIMATHANG" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Demo_QLBHModel.MATHANG" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Demo_QLBHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Demo_QLBHModel.TRONG1" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Demo_QLBHModel.FK_CHITIETH_TRONG2_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="Demo_QLBHModel.FK_CHITIETH_TRONG3_MATHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="Demo_QLBHModel.FK_TRONG1_TRONG1_DONNHAPH" ManuallyRouted="false" />
+        <AssociationConnector Association="Demo_QLBHModel.FK_MATHANG_THUOC_LOAIMATH" ManuallyRouted="false" />
+        <AssociationConnector Association="Demo_QLBHModel.FK_TRONG1_TRONG4_MATHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="Demo_QLBHModel.CHITIETNHACUNGCAP" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

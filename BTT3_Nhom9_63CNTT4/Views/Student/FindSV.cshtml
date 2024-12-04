@@ -1,0 +1,25 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>FindSV</title>
+</head>
+<body>
+	<div>
+		@if (ViewBag.Check == "1")
+		{
+			<h2>@ViewBag.Student.Id , @ViewBag.Student.Name, @ViewBag.Student.Class</h2>
+
+		}
+		else
+		{
+			<h2>Không tìm thấy sinh viên có ID trên</h2>
+		}
+	</div>
+</body>
+</html>

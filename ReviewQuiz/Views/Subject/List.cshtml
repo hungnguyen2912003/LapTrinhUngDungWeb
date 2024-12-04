@@ -1,0 +1,25 @@
+﻿@model List<ReviewQuiz.Models.Student>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <div> 
+        <ul>
+            @foreach(var i in Model)
+            {
+                <li>
+                    @i.Id, <i>@i.Name</i>, @i.Dvht
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

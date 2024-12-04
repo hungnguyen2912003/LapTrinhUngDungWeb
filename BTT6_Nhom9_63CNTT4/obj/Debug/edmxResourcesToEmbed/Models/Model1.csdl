@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNhanvien_DatabaseFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Nhanvien">
+    <Key>
+      <PropertyRef Name="manhanvien" />
+    </Key>
+    <Property Name="manhanvien" Type="Int32" Nullable="false" />
+    <Property Name="tennhanvien" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ngaysinh" Type="DateTime" Precision="3" />
+    <Property Name="luong" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="maphong" Type="Int32" />
+    <NavigationProperty Name="Phongban" Relationship="Self.fk_nhanvien_phongban" FromRole="Nhanvien" ToRole="Phongban" />
+  </EntityType>
+  <EntityType Name="Phongban">
+    <Key>
+      <PropertyRef Name="maphong" />
+    </Key>
+    <Property Name="maphong" Type="Int32" Nullable="false" />
+    <Property Name="tenphong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Nhanvien" Relationship="Self.fk_nhanvien_phongban" FromRole="Phongban" ToRole="Nhanvien" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="fk_nhanvien_phongban">
+    <End Role="Phongban" Type="Self.Phongban" Multiplicity="0..1" />
+    <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phongban">
+        <PropertyRef Name="maphong" />
+      </Principal>
+      <Dependent Role="Nhanvien">
+        <PropertyRef Name="maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLNhanvien_DatabaseFirstEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Nhanvien" EntityType="Self.Nhanvien" />
+    <EntitySet Name="Phongban" EntityType="Self.Phongban" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="fk_nhanvien_phongban" Association="Self.fk_nhanvien_phongban">
+      <End Role="Phongban" EntitySet="Phongban" />
+      <End Role="Nhanvien" EntitySet="Nhanvien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

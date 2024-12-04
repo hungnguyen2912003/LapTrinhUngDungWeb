@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>upload</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("upload", "TestHelper", FormMethod.Post, new { entype = "multipart/form"
+        }))
+        {
+                @Html.AntiForgeryToken();
+        <input type="file" name="upload"/>
+        <input type="submit" value="Upload File"/>
+         }
+    </div>
+</body>
+</html>

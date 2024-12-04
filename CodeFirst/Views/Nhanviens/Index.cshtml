@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CodeFirst.Models.Nhanvien>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Phongban.tenphong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tennhanvien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ngaysinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.luong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hinhanh)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phongban.tenphong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tennhanvien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngaysinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.luong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hinhanh)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.manhanvien }) |
+                @Html.ActionLink("Details", "Details", new { id=item.manhanvien }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.manhanvien })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

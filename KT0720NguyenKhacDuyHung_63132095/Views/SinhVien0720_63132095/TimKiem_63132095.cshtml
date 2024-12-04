@@ -1,0 +1,136 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<KT0720NguyenKhacDuyHung_63132095.Models.SINHVIEN>
+@{
+    ViewBag.Title = "TimKiem_63132095";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    th {
+        color: #4F96D4;
+    }
+</style>
+
+@using (Html.BeginForm("TimKiem_63132095", "SinhVien0720_63132095", FormMethod.Get))
+{
+    <div style="display: flex; justify-content: center;">
+        <div>
+            <p>Mã sinh viên</p>
+            <p>Họ tên</p>
+        </div>
+        <div style="padding-left: 20px;">
+            <div>
+                @Html.TextBox("mssv")
+            </div>
+            <div style="margin-top: 10px;">
+                @Html.TextBox("hoten")
+            </div>
+            <div style="margin-top: 15px;">
+                <input type="submit" class="btn btn-primary" value="Tìm kiếm" />
+                <button type="button" class="btn btn-primary">
+                    @Html.ActionLink("Nhập mới", "TimKiem_63132095", null, new { style = "color: white;"})
+                </button>
+            </div>
+        </div>
+    </div>
+}
+<br />
+
+<h2 style="text-align: center;">DANH SÁCH SINH VIÊN</h2>
+
+<br />
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Mã sinh viên
+                </th>
+                <th>
+                    Họ sinh viên
+                </th>
+                <th>
+                    Tên sinh viên
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Ngày sinh
+                </th>
+                <th>
+                    Ảnh sinh viên
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Lớp
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (Model != null && Model.Any())
+        {
+            var i = 1;
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaSV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoSV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenSV)
+                        </td>
+                        <td>
+                            @(item.Gioitinh == true ? "Nam" : "Nữ")
+                        </td>
+                        <td>
+                            @(item.Ngsinh.ToString("dd'/'MM'/'yyyy"))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AnhSV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dchi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LOP.Tenlop)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaSV })
+                        </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        }
+    </table>
+}
+else
+{
+    <p style="text-align: center;">Không tìm thấy thông tin</p>
+}
+
+
+<br />
+
+<div style="text-align: center;">
+    @Html.PagedListPager(Model, page => Url.Action("TimKiem_63132095",
+    new { page, pageSize = 2 }))
+</div>
+
+
+

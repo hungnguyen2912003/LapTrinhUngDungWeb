@@ -1,0 +1,18 @@
+﻿@{
+	ViewBag.Title = "StdList";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+	@if (ViewBag.Check == "1")
+	{
+		<h2>@ViewBag.Student.Id , @ViewBag.Student.Name, @ViewBag.Student.Class</h2>
+		<img src="@ViewBag.Student.Photo" alt="Ảnh sinh viên" style="width: 250px; height: 280px"/>
+	}
+	else
+	{
+		<h2>Không tìm thấy sinh viên có ID trên</h2>
+	}
+</div>
+

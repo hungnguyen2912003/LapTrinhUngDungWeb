@@ -1,0 +1,81 @@
+﻿@model Demo_PTTKHTTT.Models.MATHANG
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENMH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONGTK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONGTK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VITRI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VITRI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIABAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIABAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIAMUA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAMUA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOAIMATHANG.TENLMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIMATHANG.TENLMH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BTT6_Nhom9_63CNTT4.Models.Phongban>
+@{
+    ViewBag.Title = "Danh sách phòng ban";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách phòng ban</h2>
+
+<p>
+    @Html.ActionLink("Thêm Phòng Ban", "Create")
+</p>
+<table class="table mt-2">
+    <tr>
+        <th>
+            Mã Phòng
+        </th>
+        <th>
+            Tên Phòng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Maphong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenphong)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Maphong }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Maphong })
+            </td>
+        </tr>
+    }
+</table>
+

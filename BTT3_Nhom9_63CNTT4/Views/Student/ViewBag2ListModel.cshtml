@@ -1,0 +1,68 @@
+﻿@model BTT3_Nhom9_63CNTT4.Models.StudentModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>ViewBag2List</title>
+</head>
+<body>
+	<style>
+		table {
+			border: 2px solid #000000;
+		}
+
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border: 2px solid #000000;
+		}
+	</style>
+	<div>
+		<h2>Danh sách sinh viên</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Họ tên sinh viên</th>
+					<th>Lớp</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var s in Model.Student1)
+				{
+					<tr>
+						<td>@s.Id</td>
+						<td>@s.Name</td>
+						<td>@s.Class</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<h2>Danh sách sinh viên học lớp 63CNTT4</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Họ tên sinh viên</th>
+					<th>Lớp</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var s in Model.Student2)
+				{
+					<tr>
+						<td>@s.Id</td>
+						<td>@s.Name</td>
+						<td>@s.Class</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

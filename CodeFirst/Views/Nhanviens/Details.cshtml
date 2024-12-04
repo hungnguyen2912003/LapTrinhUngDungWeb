@@ -1,0 +1,66 @@
+﻿@model CodeFirst.Models.Nhanvien
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Nhanvien</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Phongban.tenphong)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Phongban.tenphong)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tennhanvien)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tennhanvien)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ngaysinh)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ngaysinh)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.luong)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.luong)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.hinhanh)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.hinhanh)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.manhanvien }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

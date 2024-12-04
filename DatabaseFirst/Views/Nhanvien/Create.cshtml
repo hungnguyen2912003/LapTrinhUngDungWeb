@@ -1,0 +1,86 @@
+﻿﻿@model DatabaseFirst.Models.Nhanvien
+@{
+    ViewBag.Title = "Tạo mới nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm nhân viên</h2>
+
+@using (Html.BeginForm("Create", "Nhanvien", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Mã số nhân viên</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.manhanvien, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.manhanvien, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tên nhân viên</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tennhanvien, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tennhanvien, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mt-2">
+        <label class="control-label col-md-2">Ngày tháng năm sinh</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ngaysinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Lương</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.luong, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.luong, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mt-2">
+        <label class="control-label col-md-2">Hình ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="ImageFile" class="form-control" />
+            @Html.ValidationMessageFor(model => model.hinhanh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Phòng ban</label>
+        <div class="col-md-10">
+            <select name="maPhong" class="form-control">
+                @foreach (var i in new DatabaseFirst.Models.QLNhanvien_DatabaseFirstEntities().Phongban.ToList())
+                {
+                    <option value="@i.maphong">@i.tenphong</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.maphong, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm" class="btn btn-success mt-2" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
